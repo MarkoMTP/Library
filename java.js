@@ -7,11 +7,19 @@ const inputPages = document.getElementById('pages');
 const submitBtn = document.getElementById("submitBtn");
 const formElement = document.querySelector("form")
 
+const openBtn = document.querySelector('.open-button');
+const closeBtn = document.querySelector('.close-button')
+const myModal  = document.querySelector('.modal')
 
 
 
 
 
+openBtn.addEventListener('click', () => {
+myModal.showModal()
+
+
+})
 
 
 
