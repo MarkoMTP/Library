@@ -4,7 +4,7 @@ let books = document.getElementById("books")
 const inputTitle = document.getElementById('title');
 const inputAuthor = document.getElementById('author');
 const inputPages = document.getElementById('pages');
-const submitBtn = document.getElementById("submitBtn");
+const submitBtn = document.querySelector(".submitBtn");
 const formElement = document.querySelector("form")
 
 const openBtn = document.querySelector('.open-button');
@@ -13,6 +13,7 @@ const myModal  = document.querySelector('.modal')
 
 
 
+let selectElement = document.getElementById("selectEl");
 
 
 openBtn.addEventListener('click', () => {
@@ -21,8 +22,14 @@ myModal.showModal()
 
 })
 
+closeBtn.addEventListener('click', () => {
+myModal.close()
+
+})
 
 
+
+   
 
 
 
@@ -35,12 +42,12 @@ let myLibrary = [
 
 
 
-function Book(title, author, pages) {
+function Book(title, author, pages, optionText) {
 
 this.title = title;
 this.author = author;
 this.pages = pages;
-
+this.optionText = optionText;
 
 }
 
@@ -53,7 +60,13 @@ let author = inputAuthor.value;
 let pages =  inputPages.value;
 
 
-let newBook = new Book(title, author, pages)
+
+let optionElement = selectElement.options[selectElement.selectedIndex];
+
+let optionText = optionElement.text;
+
+
+let newBook = new Book(title, author, pages, optionText)
 
 
 myLibrary.push(newBook);
@@ -78,10 +91,29 @@ myLibrary.forEach(book => {
      let pagesPara =  document.createElement("p");
      pagesPara.textContent = 'Pages:' + ' '+ book.pages;
     
+     let optionTextPara = document.createElement('p')
+     optionTextPara.textContent = 'Read:' + ' ' + book.optionText; 
+    
+
+    let button = document.createElement('button');
+    button.classList.add("remove")
+    button.textContent = 'Remove'
+    button.addEventListener("click", function() {
+        // Use 'this' to refer to the specific button within the book entry
+        var parentDiv = this.closest('.bookCard');
+        if (parentDiv) {
+            parentDiv.remove();
+        }
+    });
    
+
+     newBookDiv.appendChild(button)
     newBookDiv.appendChild(titlePara);
     newBookDiv.appendChild(authorPara);
     newBookDiv.appendChild(pagesPara);
+    newBookDiv.appendChild(optionTextPara);
+    newBookDiv.appendChild(button)
+    
 
     
     

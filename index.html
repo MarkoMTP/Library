@@ -4,11 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&family=Glass+Antiqua&family=Open+Sans:wght@300&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
         <div id="container"> 
+
+          <dialog id="modal" class="modal">
+
+
+            <form method="dialog">
+                <div>
+               
+                  <input type="text" name="title" id="title" placeholder="Title">
+                </div>
+              
+                <div>
+             
+                  <input type="text" name="author" id="author" placeholder="Author">
+                </div>
+              
+                <div>
+                
+                  <input type="number" name="pages" id="pages" placeholder="Pages">
+                </div>
+                
+                <div>
+                  <label for="selectEl">Read?:</label>
+
+                  <select name="read" id="selectEl">
+                    <option value="Yes" id="option">Yes!</option>
+                    <option value="No" id="option">No</option>
+                  
+                  </select>
+                </div>
+
+
+                <button type="submit" class="submitBtn" id="submits" >Submit</button>
+              </form> 
+              <button class="button close-button"  id="submits" > Cancel</button>
+        
+        
+        </dialog>
+        
  <div id="head">   <h1>Library</h1>
 
 
@@ -17,35 +58,10 @@
 
  <div class="botun"> <button class="button open-button"> New Book:</button>
 
-<dialog id="my-dialog" class="modal">
 
-
-    <form method="dialog">
-        <div>
-          <label for="title">Title:</label>
-          <input type="text" name="title" id="title">
-        </div>
-      
-        <div>
-          <label for="author">Author:</label>
-          <input type="text" name="author" id="author">
-        </div>
-      
-        <div>
-          <label for="pages">Pages:</label>
-          <input type="number" name="pages" id="pages">
-        </div>
-      
-        <button type="submit" id="submitBtn">Submit</button>
-      </form> 
-      <button class="button close-button"> Cancel</button>
-
-
-</dialog>
-
-</div>
 <div id="books">
-
+  
+</div>
 
   
  
