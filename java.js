@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-const button = document.getElementById('newdiv')
+
 let books = document.getElementById("books")
 const inputTitle = document.getElementById('title');
 const inputAuthor = document.getElementById('author');
@@ -76,7 +76,6 @@ books.innerHTML = '';
  
 
 
-
 myLibrary.forEach(book => {
 
     const newBookDiv = document.createElement('div');
@@ -94,20 +93,30 @@ myLibrary.forEach(book => {
      let optionTextPara = document.createElement('p')
      optionTextPara.textContent = 'Read:' + ' ' + book.optionText; 
     
-
-    let button = document.createElement('button');
-    button.classList.add("remove")
-    button.textContent = 'Remove'
-    button.addEventListener("click", function() {
-        // Use 'this' to refer to the specific button within the book entry
-        var parentDiv = this.closest('.bookCard');
-        if (parentDiv) {
-            parentDiv.remove();
-        }
-    });
    
+const button = document.createElement('button');
+button.classList.add("remove")
+    button.textContent = 'Remove'
+   button.addEventListener('click', function() {
 
-     newBookDiv.appendChild(button)
+let parentDiv = this.closest('.bookCard')
+
+if(parentDiv) {
+let bookIndex = Array.from(parentDiv.parentNode.children).indexOf(parentDiv)
+
+if(bookIndex !== -1){
+
+
+myLibrary.splice(bookIndex, 1)
+
+}
+
+parentDiv.remove()
+
+
+
+}})
+   
     newBookDiv.appendChild(titlePara);
     newBookDiv.appendChild(authorPara);
     newBookDiv.appendChild(pagesPara);
@@ -123,6 +132,7 @@ myLibrary.forEach(book => {
 
 })
 
+myModal.close()
 
 }
 
