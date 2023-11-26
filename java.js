@@ -92,6 +92,17 @@ myLibrary.forEach(book => {
     
      let optionTextPara = document.createElement('p')
      optionTextPara.textContent = 'Read:' + ' ' + book.optionText; 
+    switch(book.optionText) {
+        case 'Yes':
+            newBookDiv.style.backgroundColor = "lightgreen";
+            break;
+            case 'No':
+            newBookDiv.style.backgroundColor = "grey" 
+        break;
+
+    }
+
+   
     
    
 const button = document.createElement('button');
