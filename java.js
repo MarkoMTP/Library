@@ -42,7 +42,9 @@ let myLibrary = [
 
 
 
-function Book(title, author, pages, optionText) {
+class Book {
+
+    constructor(title, author, pages, optionText) {
 
 this.title = title;
 this.author = author;
@@ -50,32 +52,35 @@ this.pages = pages;
 this.optionText = optionText;
 
 }
+}
+
+class addBookToLibrary  {
+constructor() {
+this.title = inputTitle.value;
+this.author = inputAuthor.value;
+this.pages =  inputPages.value;
 
 
-function addBookToLibrary () {
+this.optionElement = selectElement.options[selectElement.selectedIndex];
+this.optionText = this.optionElement.textContent
+
+ this.newBook = new Book(this.title, this.author, this.pages, this.optionText)
 
 
-let title = inputTitle.value;
-let author = inputAuthor.value;
-let pages =  inputPages.value;
+}
 
 
 
-let optionElement = selectElement.options[selectElement.selectedIndex];
-
-let optionText = optionElement.text;
-
-
-let newBook = new Book(title, author, pages, optionText)
+addBook() {
+  myLibrary.push(this.newBook);
+}
 
 
-myLibrary.push(newBook);
+clear() {
+    books.innerHTML = '';
+}
 
-
-books.innerHTML = '';
- 
-
-
+create() {
 myLibrary.forEach(book => {
 
     const newBookDiv = document.createElement('div');
@@ -127,7 +132,7 @@ parentDiv.remove()
 
 
 }})
-   
+
     newBookDiv.appendChild(titlePara);
     newBookDiv.appendChild(authorPara);
     newBookDiv.appendChild(pagesPara);
@@ -144,11 +149,19 @@ parentDiv.remove()
 })
 
 myModal.close()
-
+}
 }
 
 
-submitBtn.addEventListener("click", addBookToLibrary )
+submitBtn.addEventListener("click", () => {
+const addBookInstance = new addBookToLibrary()
+
+addBookInstance.addBook()
+addBookInstance.clear()
+addBookInstance.create()
+
+
+} )
 
 formElement.addEventListener('submit', function(event) {
 
