@@ -151,25 +151,44 @@ parentDiv.remove()
 myModal.close()
 }
 }
+formElement.addEventListener('submit', function (event) {
+    // Clear any existing custom validity
+    inputTitle.setCustomValidity('');
+    inputAuthor.setCustomValidity('');
+    inputPages.setCustomValidity('');
 
+    // Set custom validity and display custom error message if needed
+    if (inputTitle.validity.valueMissing) {
+        inputTitle.setCustomValidity("Title is required");
+    }
+
+    if (inputAuthor.validity.valueMissing) {
+        inputAuthor.setCustomValidity("Author is required");
+    }
+
+    if (inputPages.validity.valueMissing) {
+        inputPages.setCustomValidity("Pages is required");
+    }
+
+    // Check if any of the fields have custom validity set
+    if (!formElement.checkValidity()) {
+        // If there's any custom validity, prevent the form submission
+        formElement.reportValidity();
+        event.preventDefault();
+    }
+});
 
 submitBtn.addEventListener("click", () => {
-const addBookInstance = new addBookToLibrary()
+    const addBookInstance = new addBookToLibrary();
 
-addBookInstance.addBook()
-addBookInstance.clear()
-addBookInstance.create()
-
-
-} )
-
-formElement.addEventListener('submit', function(event) {
-
-    event.preventDefault(); 
+    if (inputTitle.validity.valueMissing === false && inputAuthor.validity.valueMissing === false && inputPages.validity.valueMissing === false) {
+        addBookInstance.addBook();
+        addBookInstance.clear();
+        addBookInstance.create();
+    }
+});
 });
 
 
+// form validity
 
-
-
-}); 
